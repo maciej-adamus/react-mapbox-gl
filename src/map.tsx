@@ -189,13 +189,6 @@ const ReactMapboxFactory = ({
         maxBounds
       } = this.props;
 
-      // tslint:disable-next-line:no-any
-      (MapboxGl as any).accessToken = accessToken;
-      if (apiUrl) {
-        // tslint:disable-next-line:no-any
-        (MapboxGl as any).config.API_URL = apiUrl;
-      }
-
       if (!Array.isArray(zoom)) {
         throw new Error(
           'zoom need to be an array type of length 1 for reliable update'
@@ -204,6 +197,7 @@ const ReactMapboxFactory = ({
 
       const opts: MapboxGl.MapboxOptions = {
         preserveDrawingBuffer,
+        accessToken,
         hash,
         zoom: zoom[0],
         minZoom,
